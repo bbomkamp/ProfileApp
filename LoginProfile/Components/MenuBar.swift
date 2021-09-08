@@ -32,7 +32,7 @@ struct MenuBar: View {
                 Button(action:{print("Sign-Up Tapped")}){
                     Image(systemName: "gear").font(.system(size: 30))
                 }
-                Text("Photos").font(.caption2).foregroundColor(.white)
+                Text("Settings").font(.caption2).foregroundColor(.white)
             }.padding()
         }.overlay(
             RoundedRectangle(cornerRadius: 25)
