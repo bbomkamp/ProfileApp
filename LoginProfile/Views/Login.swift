@@ -101,11 +101,11 @@ struct Login: View {
                 )
                 .scaleEffect(scale)
 //                .onAppear {
-//                    let baseAnimation = Animation.easeInOut(duration: 3)
+//                    let baseAnimation = Animation.easeInOut(duration: 2)
 //                    let repeated = baseAnimation.repeatForever(autoreverses: true)
-//                    
+//
 //                    withAnimation(repeated) {
-//                        scale = 0.95
+//                        scale = 0.88
 //                    }
 //                }
         }.navigationBarTitle("")

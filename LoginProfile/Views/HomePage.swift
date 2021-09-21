@@ -14,6 +14,8 @@ struct HomePage: View {
     @State var openCameraRoll = false
     @State var imageSelected = UIImage()
     
+    @State var isShowingImagePicker = false
+    
 
     
     var body: some View {
@@ -30,15 +32,16 @@ struct HomePage: View {
                 ZStack(alignment: .bottomTrailing){
                     
                     Button(action: {
-                        changeProfileImage = true
-                        openCameraRoll = true
-                        
+                        self.isShowingImagePicker.toggle()
                     },label: {
                         if changeProfileImage {
                             Image(uiImage: imageSelected)
                                 .profileImageMod()
                         } else {
                             defaultProfilePic()}})
+                    .sheet(isPresented: $isShowingImagePicker, content: {
+                        ImagePickerView()
+                    })
                     
                     plusImage()}
                 
@@ -57,6 +60,8 @@ struct HomePage: View {
             }
         }
     }
+    
+    
     
     // Functions
     fileprivate func plusImage() -> some View {
@@ -81,3 +86,38 @@ struct HomePage_Previews: PreviewProvider {
         HomePage()
     }
 }
+
+struct ImagePickerView: UIViewControllerRepresentable{
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+      
+    }
+    
+  
+    func makeCoordinator() -> ImagePickerView.Coordinator {
+              return Coordinator()
+          }
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIViewController {
+        let controller = UIImagePickerController()
+        controller.delegate = context.coordinator
+        return controller
+    }
+    
+   
+
+    
+    
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+           
+            }
+        }
+    }
+    
+    
+    func updateUIViewController(_ uiViewController: ImagePickerView.UIViewControllerType, context: UIViewControllerRepresentableContext<ImagePickerView>) {
+        
+    }
+
